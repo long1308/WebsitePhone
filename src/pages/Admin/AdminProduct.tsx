@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Iproduct } from "../../interfaces/product";
+import { IProduct } from "../../interfaces/product";
 import { Image, Button, message, Popconfirm } from "antd";
 // định nghĩa kiểu props
 type AdminProductProps = {
-  products: Iproduct[];
-  onRemove: (id: number | string) => void;
+  products: IProduct[];
+  onRemove: (id: string) => void;
 };
 
 const AdminProduct = ({ products, onRemove }: AdminProductProps) => {
@@ -38,6 +38,9 @@ const AdminProduct = ({ products, onRemove }: AdminProductProps) => {
                     Price
                   </th>
                   <th scope="col" className="px-6 py-4">
+                    OriginalPrice
+                  </th>
+                  <th scope="col" className="px-6 py-4">
                     Description
                   </th>
                   <th scope="col" className="px-6 py-4">
@@ -57,14 +60,17 @@ const AdminProduct = ({ products, onRemove }: AdminProductProps) => {
                     <td className="whitespace-nowrap px-6 py-4">
                       <Image
                         width={100}
-                        src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                        src={product.images[0].base_url}
                       />
                     </td>
                     <td className="whitespace-nowrap px-6 py-4">
                       {product.price}
                     </td>
                     <td className="whitespace-nowrap px-6 py-4">
-                      {product.description}
+                      {product.original_price}
+                    </td>
+                    <td className="whitespace-nowrap px-6 py-4">
+                      {/* {product.description} */}
                     </td>
                     <td className="whitespace-nowrap px-6 py-4">
                       {/* <button
@@ -77,16 +83,17 @@ const AdminProduct = ({ products, onRemove }: AdminProductProps) => {
                         placement="topLeft"
                         title={"Bạn có chắc chắn muốn xóa không"}
                         description={product.name}
-                        onConfirm={() => onRemove(product._id!)}
+                        onConfirm={() => onRemove(product.id!)}
                         okText="Yes"
                         cancelText="No"
+                        okButtonProps={{ style: { background: 'red' } }}
                       >
                         <Button type="primary" danger>
                           Delete
                         </Button>
                       </Popconfirm>
                       <Link
-                        to={`/admin/products/${product._id}/update`}
+                        to={`/admin/products/${product.id}/update`}
                         className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mx-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                       >
                         Update

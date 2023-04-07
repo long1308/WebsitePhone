@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 //interface
-import { Iproduct } from "./interfaces/product";
+import { IProduct } from "./interfaces/product";
 //bootstrap
 // import "bootstrap/dist/css/bootstrap.min.css"
 //ant
@@ -18,14 +18,18 @@ import {
 import AdminProduct from "./pages/Admin/AdminProduct";
 import Signin from "./pages/Client/Signin";
 import Signup from "./pages/Client/Signup";
-import AdminProductAdd from "./pages/AdminProductAdd";
-import AdminEditProduct from "./pages/AdminEditProduct";
+import AdminEditProduct from "./pages/Admin/AdminEditProduct";
 import HomePages from "./pages/Client/HomePage";
 import ProductDetail from "./pages/Client/ProductDetail";
 import DashBoardPage from "./pages/Admin/DashBoardPage";
+import Cart from "./pages/Client/Cart";
+import AdminAddProduct from "./pages/Admin/AdminAddProduct";
+import NotFound from "./pages/Client/NotFound";
+import PrivateRouter from "./components/PrivateRouter";
+
 
 function App() {
-  const [products, setProducts] = useState<Iproduct[]>([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
   // call api  lấy dữ liệu
   useEffect(() => {
     (async () => {
@@ -34,22 +38,23 @@ function App() {
     })();
   }, []);
   // xóa sản phẩm
-  const onHandDeleteProduct = async (id: number | string) => {
+  const onHandDeleteProduct = async (id: string) => {
     await deleteProduct(id).then(() => {
-      setProducts(products.filter((product) => product._id !== id));
+      setProducts(products.filter((product) => product.id !== id));
     });
   };
   //add sản phẩm
-  const onHandAddProduct = async (product: Iproduct) => {
-    await addProduct(product).then(() => {
-      setProducts([...products, product]);
-    });
+  const onHandAddProduct = async (product: IProduct) => {
+    await addProduct(product)
+    await getAllProducts().then(({ data }) => {
+      setProducts(data)
+    })
   };
   // sửa sản phẩm
-  const onHandEditProduct = async (data: Iproduct, id: string | number) => {
-    await updateProduct(data, id).then(() => {
+  const onHandEditProduct = async (data: IProduct, id: string | number) => {
+    await updateProduct(id, data).then(() => {
       setProducts(
-        products.map((product) => (product._id === data._id ? data : product))
+        products.map((product) => (product.id === data.id ? data : product))
       );
     });
   };
@@ -57,14 +62,19 @@ function App() {
     <div className="App">
       <Routes>
         {/* client */}
+        <Route path="*" element={<NotFound />} />
+        <Route path="signin" element={<Signin />} />
+        <Route path="signup" element={<Signup />} />
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<HomePages />} />
-          <Route path="signin" element={<Signin />} />
-          <Route path="signup" element={<Signup />} />
           <Route path="products/:id" element={<ProductDetail />} />
+          <Route path="products/cart" element={<Cart />} />
         </Route>
         {/* admin */}
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/admin" element={
+          <PrivateRouter>
+            <AdminLayout />
+          </PrivateRouter>}>
           <Route index element={<DashBoardPage />} />
           <Route
             path="products"
@@ -76,12 +86,12 @@ function App() {
             }
           />
           <Route
-            path="products/add"
-            element={<AdminProductAdd onAdd={onHandAddProduct} />}
-          />
-          <Route
             path="products/:id/update"
             element={<AdminEditProduct onEdit={onHandEditProduct} />}
+          />
+          <Route
+            path="products/add"
+            element={<AdminAddProduct onAdd={onHandAddProduct} />}
           />
         </Route>
       </Routes>

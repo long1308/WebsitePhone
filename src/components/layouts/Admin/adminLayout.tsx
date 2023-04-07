@@ -11,14 +11,7 @@ const AdminLayout = (props: Props) => {
       <header className="bg-[#00B0D7]">
         <Header />
       </header>
-      <div className=" flex">
-        <aside className="w-2/12">
-          <Sideber />
-        </aside>
-        <main className="w-10/12" >
-        <Outlet />
-        </main>
-      </div>
+      <Sideber />
     </div>
   );
 };

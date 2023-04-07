@@ -6,6 +6,3 @@ export const signin = (user:IuserSignin) =>{
 export const signup = (user:IUserSignup) =>{
     return insntance.post("/signup",user);
 }
-export const cheacEmail = () =>{
-   
-}

@@ -13,7 +13,7 @@ const DashBoardPage = (props: Props) => {
                 <tr>
                   <th scope="col" className="px-6 py-4">
                     #
-                  </th>
+                  </th> 
                   <th scope="col" className="px-6 py-4">
                     First
                   </th>

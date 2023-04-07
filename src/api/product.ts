@@ -1,31 +1,22 @@
-import { Iproduct } from "../interfaces/product";
-import insntance from "./insntace";
-const user = JSON.parse(localStorage.getItem("user")!);
-export const getAllProducts = () =>{
-    return insntance.get("/products",{
-        headers:{
-            Authorization: `Bearer ${user.accessToken}`
-        }
-    });
+import { IProduct } from "../interfaces/product";
+import instance from "./insntace";
+export const getAllProducts = () => {
+    return instance.get("/products")
 }
-export const deleteProduct = (id:number|string) =>{
-    return insntance.delete(`/products/${id}`,{
-        headers: {
-            Authorization: `Bearer ${user.accessToken}`
-        }
-    });
+
+export const getProduct = (id: string ) => {
+    return instance.get("/products/" + id)
 }
-export const addProduct = (product:Iproduct) =>{
-    return insntance.post("/products",product,{
-        headers: {
-            Authorization: `Bearer ${user.accessToken}`
-        }
-    });
+
+export const updateProduct = (id: string | number, products:IProduct) => {
+    return instance.put("/products/" + id, products)
 }
-export const updateProduct = (product:Iproduct,id:string|number) =>{
-    return insntance.put(`/products/${id}`,product,{
-        headers: {
-            Authorization: `Bearer ${user.accessToken}`
-        }
-    });
+
+export const addProduct = (products:IProduct) => {
+    return instance.post("/products", products)
 }
+
+export const deleteProduct = (id: string ) => {
+    return instance.delete("/products/" + id)
+}
+
