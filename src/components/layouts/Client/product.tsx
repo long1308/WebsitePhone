@@ -125,8 +125,10 @@ const Product: React.FC = () => {
     useEffect(() => {
         setLoading(true);
         (async () => {
-            const { data } = await getAllProducts();
-            setProducts(data);
+            await getAllProducts().then(({ data }) => {
+                const isVisibleProjet = data.filter((product: { isVisible: boolean; }) => product.isVisible);
+                setProducts(isVisibleProjet);
+            })
         })();
         setLoading(false);
     }, []);

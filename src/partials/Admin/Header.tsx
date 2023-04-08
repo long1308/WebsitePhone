@@ -12,7 +12,6 @@ const Header = (props: Props) => {
           placeholder="search"
         />
       </div>
-
       <h2>Xin chào Admin</h2>
     </div>
   );

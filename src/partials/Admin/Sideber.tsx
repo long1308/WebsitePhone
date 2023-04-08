@@ -28,10 +28,10 @@ const Sideber: React.FC = () => {
 
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider trigger={null} collapsible collapsed={collapsed} style={{ background: 'white' }}>
         <div className="logo" />
         <Menu
-          theme="dark"
+          
           mode="inline"
           defaultSelectedKeys={['1']}
           items={[

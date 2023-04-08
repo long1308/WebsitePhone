@@ -6,7 +6,8 @@ export interface IProduct {
     description: string,
     images: Images[],
     brand: { id: number, name: string, slug: string },
-    specifications: ISpecification[]
+    specifications: ISpecification[],
+    isVisible: boolean;
 }
 export interface Images {
 

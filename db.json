@@ -289,7 +289,8 @@
             }
           ]
         }
-      ]
+      ],
+      "isVisible": false
     },
     {
       "id": 2,
@@ -400,7 +401,8 @@
             }
           ]
         }
-      ]
+      ],
+      "isVisible": false
     },
     {
       "id": 3,
@@ -626,7 +628,8 @@
             }
           ]
         }
-      ]
+      ],
+      "isVisible": false
     },
     {
       "id": 4,
@@ -767,7 +770,8 @@
             }
           ]
         }
-      ]
+      ],
+      "isVisible": true
     },
     {
       "id": 5,
@@ -963,7 +967,8 @@
             }
           ]
         }
-      ]
+      ],
+      "isVisible": false
     },
     {
       "id": 6,
@@ -1114,7 +1119,8 @@
           ]
         }
       ],
-      "name": "\tApple iPad mini (6th Gen) Wi-Fi, 2021"
+      "name": "\tApple iPad mini (6th Gen) Wi-Fi, 2021",
+      "isVisible": true
     }
   ]
 }

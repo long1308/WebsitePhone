@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { getProduct } from "../../../api/product"
 import { Image } from "antd"
+import { Interweave } from "interweave"
 
 const Products_detail = () => {
     // assertion
@@ -57,8 +58,12 @@ const Products_detail = () => {
                 </div>
                 <div className="w-[70%] px-14 flex flex-col">
                     <div className="flex">
-                        <div className="text-red-600 text-3xl">{product.price} <sup>đ</sup></div>
-                        <div className="text-base mt-auto opacity-70 ml-6">{product.original_price}<sup>đ</sup></div>
+                        <div className="text-red-600 text-3xl">
+                            {product.price ? product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : 'N/A'} 
+                        </div>
+                        <div className="text-base mt-auto opacity-70 ml-6">
+                            {product.original_price ? product.original_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : 'N/A'} 
+                        </div>
                     </div>
                     <div className="mt-10 text-[15px]">
                         Mô tả ngắn: Trước khi mua bất kỳ chiếc điện thoại nào, người dùng cũng sẽ quan tâm đến thiết kế sản phẩm trước. Với phiên bản A73, Samsung đã tạo nên một chiếc smartphone với vẻ ngoài mang đến cảm giác sang trọng và tinh tế.
@@ -77,13 +82,20 @@ const Products_detail = () => {
             {/* description */}
             <div className="product_description">
                 <div className="bg-[#F2F2F2] py-2 px-5">
-                    <h1 className="text-red-600 text-center text-lg uppercase">Đặc điểm nổi bật</h1>
+                    {/* <h1 className="text-red-600 text-center text-lg uppercase">Đặc điểm nổi bật</h1>
                     <ul className="my-3 text-sm">
                         <li>Camera chất lượng, bắt trọn từng khoảng khắc - Cụm 4 camera với cảm biến chính lên đến 108 MP</li>
                         <li className="mt-2">Thưởng thức không gian giải trí cực đỉnh - Màn hình lớn 6.7 inch, độ phân giải Full HD+, 120Hz mượt mà</li>
                         <li className="mt-2">Cấu hình Galaxy A73 5G được nâng cấp mạnh với chip Snapdragon 778G, RAM lên đến 8 GB</li>
-                        <li className="mt-2">Chiến game thoải mái không lo gián đoạn - Viên pin lớn 5000 mAh, hỗ trợ sạc nhanh 25 W</li>
-                    </ul>
+                        <li className="mt-2">Chiến game thoải mái 
+                        không lo gián đoạn - Viên pin lớn 5000 mAh, hỗ trợ sạc nhanh 25 W</li>
+                    </ul> */}
+
+
+
+                    <Interweave content={product.description} />
+
+
                 </div>
             </div>
             <div className="mt-3 text-sm"><span>Năm 2022 hứa hẹn sẽ là một năm rất đáng trông đợi đối với những ai là fan của thương hiệu điện thoại Samsung. Mới đây, hãng sẽ tiếp tục cho ra mắt nhiều smartphone với sự cải tiến trong thiết kế và cấu hình, trong đó phải kể đến chiếc Samsung Galaxy A73 với nhiều cải tiến so với thế hệ trước. Vậy sản phẩm có gì nổi bật, giá bao nhiêu và liệu có nên mua không? Tìm hiểu ngay nhé!</span></div>

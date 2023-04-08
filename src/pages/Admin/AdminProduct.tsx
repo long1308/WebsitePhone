@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IProduct } from "../../interfaces/product";
-import { Image, Button, message, Popconfirm } from "antd";
+import { Image, Button, message, Popconfirm, Switch } from "antd";
+import { updateProduct } from "../../api/product";
 // định nghĩa kiểu props
 type AdminProductProps = {
   products: IProduct[];
@@ -10,7 +11,14 @@ type AdminProductProps = {
 
 const AdminProduct = ({ products, onRemove }: AdminProductProps) => {
   if (!products) return <h1>Loading List Products.....</h1>;
-
+  const onToggleVisibility = async (checked: boolean, product: IProduct) => {
+    const updatedProduct = {
+      ...product,
+      isVisible: checked,
+    };
+    await updateProduct(product.id, updatedProduct)
+    // call a function to update the product in db.json using the updatedProduct object
+  };
   return (
     <div className="flex flex-col mt-8 ml-8">
       <div className="overflow-x-auto ">
@@ -41,6 +49,9 @@ const AdminProduct = ({ products, onRemove }: AdminProductProps) => {
                     OriginalPrice
                   </th>
                   <th scope="col" className="px-6 py-4">
+                    Ẩn/hiện
+                  </th>
+                  <th scope="col" className="px-6 py-4">
                     Description
                   </th>
                   <th scope="col" className="px-6 py-4">
@@ -54,31 +65,28 @@ const AdminProduct = ({ products, onRemove }: AdminProductProps) => {
                     <th className="whitespace-nowrap px-6 py-4 font-medium">
                       {index + 1}
                     </th>
-                    <td className="whitespace-nowrap px-6 py-4">
+                    <td className="whitespace-nowrap px-6 py-4 font-medium">
                       {product.name}
                     </td>
-                    <td className="whitespace-nowrap px-6 py-4">
+                    <td className="whitespace-nowrap px-6 py-4 font-medium">
                       <Image
                         width={100}
                         src={product.images[0].base_url}
                       />
                     </td>
-                    <td className="whitespace-nowrap px-6 py-4">
+                    <td className="whitespace-nowrap px-6 py-4 font-medium">
                       {product.price}
                     </td>
-                    <td className="whitespace-nowrap px-6 py-4">
+                    <td className="whitespace-nowrap px-6 py-4 font-medium">
                       {product.original_price}
                     </td>
-                    <td className="whitespace-nowrap px-6 py-4">
+                    <td className="whitespace-nowrap px-6 py-4 font-medium">
+                      <Switch defaultChecked={product.isVisible} onChange={(checked) => onToggleVisibility(checked, product)} />
+                    </td>
+                    <td className="whitespace-nowrap px-6 py-4 font-medium">
                       {/* {product.description} */}
                     </td>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      {/* <button
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                        onClick={() => onRemove(product._id!)}
-                      >
-                        Remove
-                      </button> */}
+                    <td className="whitespace-nowrap px-6 py-4 font-medium">
                       <Popconfirm
                         placement="topLeft"
                         title={"Bạn có chắc chắn muốn xóa không"}
