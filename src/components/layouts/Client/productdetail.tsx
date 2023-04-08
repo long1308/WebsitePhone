@@ -61,7 +61,7 @@ const Products_detail = () => {
                         <div className="text-red-600 text-3xl">
                             {product.price ? product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : 'N/A'} 
                         </div>
-                        <div className="text-base mt-auto opacity-70 ml-6">
+                        <div className="text-base mt-auto opacity-70 ml-6 line-through">
                             {product.original_price ? product.original_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : 'N/A'} 
                         </div>
                     </div>

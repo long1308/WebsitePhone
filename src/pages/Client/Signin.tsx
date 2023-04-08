@@ -17,7 +17,7 @@ const Signin = (props: Props) => {
   const onSubmit: SubmitHandler<IuserSignin> = async (inputData: any) => {
     try {
       const repsonse = await signin(inputData);
-      localStorage.setItem("accessToken", repsonse.data.token)
+      localStorage.setItem("accessToken", repsonse.data.accessToken)
       authenticated(repsonse.data.user);
       navigate("/");
     } catch (error) { }
