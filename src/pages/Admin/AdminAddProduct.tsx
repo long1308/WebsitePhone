@@ -17,6 +17,7 @@ const AdminAddProduct = ({ onAdd }: AdminEditProductProps) => {
 
     }
     const onSubmit: SubmitHandler<IProduct> = (inputUpdate: IProduct) => {
+        const { quantity } = inputUpdate
         onAdd(inputUpdate)
         console.log(inputUpdate);
         navigate('/admin/products')
@@ -24,6 +25,8 @@ const AdminAddProduct = ({ onAdd }: AdminEditProductProps) => {
     return (
 
         <form action="" className="space-y-4 mt-8 ml-8" onSubmit={handleSubmit(onSubmit)}>
+            {/* <input className='hidden' {...register('quantity')} type="number" defaultValue={parseInt('0', 10)} /> */}
+
             <div className="flex flex-col md:flex-row w-full" >
 
                 <div className="md:w-2/5 p-4">

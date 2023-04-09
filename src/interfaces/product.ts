@@ -8,6 +8,7 @@ export interface IProduct {
     brand: { id: number, name: string, slug: string },
     specifications: ISpecification[],
     isVisible: boolean;
+    quantity: 0
 }
 export interface Images {
 

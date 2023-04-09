@@ -1,9 +1,9 @@
 
 import { IProduct } from "../../../interfaces/product"
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { getProduct } from "../../../api/product"
-import { Image } from "antd"
+import { Button, Image } from "antd"
 import { Interweave } from "interweave"
 
 const Products_detail = () => {
@@ -22,6 +22,19 @@ const Products_detail = () => {
         setImage(src)
 
     };
+    // cart 
+    function addToCart(product: IProduct) {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')!) || [];
+        const existingItem = cartItems.find((item: { id: string }) => item.id === product.id);
+
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            cartItems.push({ ...product, quantity: 1 });
+        }
+
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
     return <>
         <div className="border-b-2">
             <ul className="list-none h-8 flex items-center justify-start mx-auto max-w-[1024px] border-[#ccc] w-full text-sm cursor-pointer text-gray-400">
@@ -59,10 +72,10 @@ const Products_detail = () => {
                 <div className="w-[70%] px-14 flex flex-col">
                     <div className="flex">
                         <div className="text-red-600 text-3xl">
-                            {product.price ? product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : 'N/A'} 
+                            {product.price ? product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : 'N/A'}
                         </div>
                         <div className="text-base mt-auto opacity-70 ml-6 line-through">
-                            {product.original_price ? product.original_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : 'N/A'} 
+                            {product.original_price ? product.original_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) : 'N/A'}
                         </div>
                     </div>
                     <div className="mt-10 text-[15px]">
@@ -71,11 +84,11 @@ const Products_detail = () => {
                     <div className="mt-auto flex">
                         <button className="bg-[#FF3945]  text-[#FFFFFF] w-[240px] h-12 rounded-md hover:bg-white hover:border-[#FF3945] hover:text-[#FF3945] hover:border-2 ease-linear transition-all"><a href="/gio-hang">Mua ngay</a></button>
                         <div className="w-12 h-12 border-red-600 border-2 ml-5 rounded-md flex justify-center items-center cursor-pointer hover:bg-white group">
-                            <a href="/gio-hang">
+                            <a onClick={() => addToCart(product)}>
                                 <img className="w-5 h-5" src="/cart.png" alt="" />
                             </a>
                         </div>
-                        <span className="w-16 text-sm ml-5 cursor-pointer"><a href="/gio-hang">Thêm vào giỏ hàng</a></span>
+                        <span className="w-16 text-sm ml-5 cursor-pointer"><Link to={'/cart'} onClick={() => addToCart(product)}>Thêm vào giỏ hàng</Link></span>
                     </div>
                 </div>
             </div>

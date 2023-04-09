@@ -68,7 +68,7 @@ function App() {
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<HomePages />} />
           <Route path="products/:id" element={<ProductDetail />} />
-          <Route path="products/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
         {/* admin */}
         <Route path="/admin" element={

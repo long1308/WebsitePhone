@@ -980,6 +980,7 @@
     {
       "id": 6,
       "price": 20490000,
+      "quantity": 0,
       "original_price": 23990000,
       "description": "<h3>Nội dung quảng cáo</h3>\n<p>iPad Pro. Với hiệu năng ấn tượng, kết nối không dây siêu nhanh và trải nghiệm Apple Pencil thế hệ mới. Cùng với các tính năng mới mạnh mẽ cho hiệu suất công việc và cộng tác ở iPadOS 16. iPad Pro đem đến trải nghiệm iPad cực đỉnh.</p>\n<h3>Tính năng nổi bật</h3>\n<ul>\n<li>Màn hình Liquid Retina 11 inch<sup>1</sup> lộng lẫy với ProMotion, True Tone và dải màu rộng P3</li>\n<li>Chip M2 với CPU 8 lõi và GPU 10 lõi</li>\n<li>Camera Wide 12MP, camera sau Ultra Wide 10MP và LiDAR Scanner cho trải nghiệm AR sống động</li>\n<li>Camera trước Ultra Wide 12MP với tính năng Trung Tâm Màn Hình</li>\n<li>Wi-Fi 6E<sup>2</sup></li>\n<li>Cổng kết nối USB-C hỗ trợ Thunderbolt / USB 4</li>\n<li>Xác thực bảo mật với Face ID</li>\n<li>Làm được nhiều việc hơn với thời lượng pin bền bỉ cả ngày<sup>4</sup></li>\n<li>Tương thích với Apple Pencil (thế hệ thứ 2), Magic Keyboard và Smart Keyboard Folio</li>\n<li>Hỗ trợ tính năng lướt của Apple Pencil để đánh dấu và phác thảo chính xác hơn</li>\n<li>iPadOS 16 khiến iPad giàu năng lực hơn hẳn với các tính năng mới mạnh mẽ cho hiệu suất công việc và cộng tác</li>\n</ul>\n<h3>Pháp lý</h3>\n<p>Phụ kiện được bán riêng và tùy thuộc nguồn hàng có sẵn. Khả năng tương thích tùy thuộc thế hệ sản phẩm. Ứng dụng có sẵn trên App Store. Nội dung được cung cấp có thể thay đổi. Phần mềm bên thứ ba được bán riêng.</p>\n<p><sup>1</sup>Màn hình có các góc bo tròn. Khi tính theo hình chữ nhật, kích thước màn hình iPad Pro 11 inch theo đường chéo là 11 inch. Diện tích hiển thị thực tế nhỏ hơn.</p>\n<p><sup>2</sup>Wi-Fi 6E không khả dụng tại Trung Quốc đại lục và Nhật Bản.</p>\n<p><sup>3</sup>Thời lượng pin khác nhau tùy theo cách sử dụng và cấu hình. Truy cập <a href=\"http://www.apple.com/batteries\">apple.com/batteries</a> để biết thêm thông tin.</p>\n<h3>Thông số kỹ thuật</h3>\n<p>Truy cập apple.com/ipad-pro/specs để xem cấu hình đầy đủ.</p><p>Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá trị trên 1 triệu đồng).....</p>",
       "images": [
@@ -1132,14 +1133,38 @@
     {
       "images": [
         {
-          "base_url": "https://salt.tikicdn.com/ts/product/0c/dd/e7/e6431984901119a1f8166cc4e579da93.png"
+          "base_url": "https://salt.tikicdn.com/ts/product/43/35/ca/4630727d5a4eee189dc3dacae0bf39d7.jpg"
         }
       ],
-      "name": "LE THI NHAT",
-      "original_price": "111",
-      "price": "11",
-      "description": "11",
-      "id": 7,
+      "name": "12",
+      "original_price": "12",
+      "price": "12",
+      "description": "1212",
+      "id": 7
+    },
+    {
+      "images": [
+        {
+          "base_url": "https://cdn.pixabay.com/photo/2021/08/02/05/17/sunflower-6515860__340.jpg"
+        }
+      ],
+      "name": "12",
+      "original_price": "12",
+      "price": "12",
+      "description": "12",
+      "id": 8
+    },
+    {
+      "images": [
+        {
+          "base_url": "https://cdn.pixabay.com/photo/2021/08/02/05/17/sunflower-6515860__340.jpg"
+        }
+      ],
+      "name": "34",
+      "original_price": "234",
+      "price": "234",
+      "description": "23",
+      "id": 9,
       "isVisible": true
     }
   ]

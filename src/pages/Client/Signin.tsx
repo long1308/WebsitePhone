@@ -38,6 +38,7 @@ const Signin = (props: Props) => {
       }
       const repsonse = await signin(inputData);
       localStorage.setItem("accessToken", repsonse.data.accessToken)
+      localStorage.setItem('cartItems', JSON.stringify([]));
       authenticated(repsonse.data.user);
       navigate("/");
     } catch (error) { }
