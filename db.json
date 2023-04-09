@@ -42,6 +42,13 @@
       "name": "dfg",
       "confirmPassword": "123456",
       "id": 6
+    },
+    {
+      "email": "zipfooed21@gmail.com",
+      "password": "$2a$10$JWPhEYxfprAU62pbfC6CBO.4GbNZPLZBR9rHY7pjrzjTwgrcoKKTG",
+      "name": "LE THI NHAT",
+      "confirmPassword": "123456",
+      "id": 7
     }
   ],
   "products": [
@@ -1120,6 +1127,19 @@
         }
       ],
       "name": "\tApple iPad mini (6th Gen) Wi-Fi, 2021",
+      "isVisible": true
+    },
+    {
+      "images": [
+        {
+          "base_url": "https://salt.tikicdn.com/ts/product/0c/dd/e7/e6431984901119a1f8166cc4e579da93.png"
+        }
+      ],
+      "name": "LE THI NHAT",
+      "original_price": "111",
+      "price": "11",
+      "description": "11",
+      "id": 7,
       "isVisible": true
     }
   ]

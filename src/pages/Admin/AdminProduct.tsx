@@ -24,7 +24,7 @@ const AdminProduct = ({ products, onRemove }: AdminProductProps) => {
       <div className="overflow-x-auto ">
         <div className="inline-block min-w-full py-2 ">
           <Link
-            className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 "
+            className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
             to={"/admin/products/add"}
           >
             Add New Product

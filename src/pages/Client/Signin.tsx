@@ -2,20 +2,40 @@
 // dùng hook from
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import { signin } from "../../api/auth"
+import { getAllUsers, signin } from "../../api/auth"
 import { IuserSignin } from "../../interfaces/auth"
 import { useLocalStorage } from "../../utils/hook"
 import { authenticated } from "../../utils/localStroage"
+import { useEffect, useState } from "react"
 type Props = {}
 
 const Signin = (props: Props) => {
   const navigate = useNavigate()
   const [users, setUser] = useLocalStorage("user", null)
+  const [error, setError] = useState('')
   // sử dụng các hook form  destructuring  lấy ra 
   const { register, handleSubmit, formState: { errors } } = useForm<IuserSignin>()
+  //chaeck email
+  const checkEmail = async (email: string): Promise<boolean> => {
+    try {
+      const response = await getAllUsers()
+      const users = response.data
+      const foundUser = users.find((user: any) => user.email === email)
+      return !!foundUser // nếu foundUser không null, trả về true(ép kiể về boolean)
+    } catch (error) {
+      console.error(error)
+      return false
+    }
+  }
+
   // hàm sử lý form 
   const onSubmit: SubmitHandler<IuserSignin> = async (inputData: any) => {
     try {
+      const isEmailRegistered = await checkEmail(inputData.email)
+      if (!isEmailRegistered) {
+        setError("Tài khoản hoặc mật khẩu sai....");
+        return;
+      }
       const repsonse = await signin(inputData);
       localStorage.setItem("accessToken", repsonse.data.accessToken)
       authenticated(repsonse.data.user);
@@ -25,12 +45,14 @@ const Signin = (props: Props) => {
   return (
     <section className="bg-gray-50 ">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-
         <div className=" flex  bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-[#F8F8F8] dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray-900">
               Sign in to your account
             </h1>
+            <p className="error-email">
+              {error && <span className="text-red-500">{error}</span>}
+            </p>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Your email</label>

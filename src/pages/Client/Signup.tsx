@@ -1,11 +1,27 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IUserSignup } from "../../interfaces/auth";
-import { useRef } from "react";
-import { signup } from "../../api/auth";
+import { useRef, useState } from "react";
+import { getAllUsers, signup } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 type Props = {};
 
 const Signup = (props: Props) => {
+  // check email
+  const [error, setError] = useState('')
+  const checkEmail = async (email: string): Promise<boolean> => {
+    try {
+
+      const response = await getAllUsers()
+      const users = response.data
+      const foundUser = users.find((user: any) => user.email === email)
+      return !!foundUser // nếu foundUser không null, trả về true
+    } catch (error) {
+      console.error(error)
+      return false
+    }
+  }
+
+
   const navigate = useNavigate()
   const {
     register,
@@ -18,13 +34,17 @@ const Signup = (props: Props) => {
   const password = useRef({});
   password.current = watch("password", "");
 
-  const onSubmit: SubmitHandler<IUserSignup> = (inputSignup: IUserSignup) => {
+  const onSubmit: SubmitHandler<IUserSignup> = async (inputSignup: IUserSignup) => {
     console.log(inputSignup);
-
+    const isEmailRegistered = await checkEmail(inputSignup.email)
+    if (isEmailRegistered) {
+      setError("Tài khoản đã được đăng ký....");
+      return;
+    }
     (async () => {
       await signup(inputSignup).then(() => {
         navigate('/signin')
-        
+
       })
     })();
   };
@@ -36,6 +56,9 @@ const Signup = (props: Props) => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-gray-900">
               Sign in to your account
             </h1>
+            <p className="error-email">
+              {error && <span className="text-red-500">{error}</span>}
+            </p>
             <form
               className="space-y-4 md:space-y-6"
               onSubmit={handleSubmit(onSubmit)}
