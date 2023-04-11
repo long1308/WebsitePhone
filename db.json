@@ -49,6 +49,13 @@
       "name": "LE THI NHAT",
       "confirmPassword": "123456",
       "id": 7
+    },
+    {
+      "email": "lon222g123@gmail.com",
+      "password": "$2a$10$BORd6Ye9SQAvYwTcb3paeOt7cwhCtyaQjEYQ.JxOUxeF2hsYbXRCG",
+      "name": "LE THI NHAT",
+      "confirmPassword": "123456",
+      "id": 8
     }
   ],
   "products": [
@@ -1157,15 +1164,14 @@
     {
       "images": [
         {
-          "base_url": "https://cdn.pixabay.com/photo/2021/08/02/05/17/sunflower-6515860__340.jpg"
+          "base_url": "https://salt.tikicdn.com/ts/product/43/35/ca/4630727d5a4eee189dc3dacae0bf39d7.jpg"
         }
       ],
-      "name": "34",
-      "original_price": "234",
+      "name": "ưqeqwe",
+      "original_price": "2342",
       "price": "234",
-      "description": "23",
-      "id": 9,
-      "isVisible": true
+      "description": "234234",
+      "id": 9
     }
   ]
 }

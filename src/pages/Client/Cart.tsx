@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { IProduct } from "../../interfaces/product";
 import { useState } from "react";
-
+import { Button, message, Popconfirm } from 'antd';
 const Cart = () => {
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')!) || []);
     console.log(cartItems);
@@ -34,11 +34,23 @@ const Cart = () => {
             {cartItems.map((item: IProduct, index: number) => {
                 return (
                     <div key={index} className="w-full flex shadow-md rounded-md py-3 px-2 mt-4 relative">
-                        <i onClick={() => removeItem(item.id)} className="fa-solid fa-x absolute right-0 mr-3 font-bold"></i>
+                        {/* <i onClick={() => removeItem(item.id)} className="fa-solid fa-x absolute right-0 mr-3 font-bold"></i> */}
+                        <Popconfirm
+
+                            placement="topLeft"
+                            title="Bạn chắc chắn muốn xóa sản phẩm này"
+                            description={item.name}
+                            onConfirm={() => removeItem(item.id)}
+                            okText="Yes"
+                            cancelText="No"
+                            okButtonProps={{ style: { background: 'red' } }}
+                        >
+                            <Button><i className="fa-solid fa-x right-0 "></i></Button>
+                        </Popconfirm>
                         <img className="h-[13rem] w-[13rem]" src={item.images?.[0].base_url} alt="" />
                         <div className="">
                             <h1 className='text-lg font-semibold'>{item.name}</h1>
-                            <h3 className='text-red-500 font-semibold mt-2'>{item.price}<span className='text-gray-400 text-sm ml-2 line-through'>{item.original_price}</span><span className="bg-red-600 text-white rounded-md ml-2 text-xs p-2">Giảm 27%</span></h3>
+                            <h3 className='text-red-500 font-semibold mt-2'>{item.price.toLocaleString('vi-VN')} ₫<span className='text-gray-400 text-sm ml-2 line-through'>{item.original_price.toLocaleString('vi-VN')} ₫</span><span className="bg-red-600 text-white rounded-md ml-2 text-xs p-2">Giảm 27%</span></h3>
                             <div className="flex font-semibold mt-2"><p>Chọn số lượng:</p><input onChange={() => onHandInput(event, item.id)} type="number" defaultValue={item.quantity} min={1} name="" id="" className='w-2/5 border-2 border-[#ccc] ml-3' /></div>
                             <div className="bg-[#ccc] w-[350px] mt-2 p-2 rounded-md">
                                 <p>-Chương trình khuyến mãi:</p>

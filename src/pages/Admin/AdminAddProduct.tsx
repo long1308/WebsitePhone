@@ -17,10 +17,10 @@ const AdminAddProduct = ({ onAdd }: AdminEditProductProps) => {
 
     }
     const onSubmit: SubmitHandler<IProduct> = (inputUpdate: IProduct) => {
-        const { quantity } = inputUpdate
-        onAdd(inputUpdate)
+
+        // onAdd(inputUpdate)
         console.log(inputUpdate);
-        navigate('/admin/products')
+        // navigate('/admin/products')
     }
     return (
 

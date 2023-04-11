@@ -45,7 +45,8 @@ const AdminEditProduct = ({ onEdit }: AdminEditProductProps) => {
                     <div className='text-center m-auto'>
                         <img width={250} src={image || watch(`images.${0}.base_url`)} alt="Product image" />
                     </div>
-                    <input type="text" {...register(`images.${0}.base_url`)} onChange={handleChange} className='w-full' />
+                    <input type="text" {...register(`images.${0}.base_url`, { required: true })} onChange={handleChange} className='w-full' />
+
                 </div>
 
                 <div className="w-full">
